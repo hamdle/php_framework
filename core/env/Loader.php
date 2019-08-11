@@ -14,7 +14,16 @@ class Loader
 
     public function load()
     {
-        $output = file_get_contents($this->envPath);
+        try {
+            $output = file_get_contents($this->envPath);
+
+            if ($output === false || $output == '') {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
+            echo "There is an issue with the .env file";
+            die();
+        }
 
         $fileContent = explode(PHP_EOL, $output);
         // Remove empty string lines
@@ -22,7 +31,9 @@ class Loader
 
         foreach ($fileContent as $line) {
             $keyVal = explode('=', $line);
-            $_ENV[$keyVal[0]] = $keyVal[1];
+            if (isset($keyVal[1])) {
+                $_ENV[$keyVal[0]] = $keyVal[1];
+            }
         }
     }
 }
