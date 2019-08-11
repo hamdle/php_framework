@@ -2,7 +2,7 @@
 /**
  * Load and instantiate resources
  */
-require 'database/Connection.php';
+require 'core/database/Connection.php';
 require 'core/Router.php';
 
 $routes = [
