@@ -2,6 +2,7 @@
 /**
  * Load and instantiate resources
  */
+
 require 'core/env/Loader.php';
 require 'core/database/Connection.php';
 require 'core/Router.php';
@@ -16,6 +17,7 @@ $routes = [
 $dotEnv = new Loader();
 $dotEnv->load();
 
+// Get the URI for the router to resolve
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 
 $db = new Connection();

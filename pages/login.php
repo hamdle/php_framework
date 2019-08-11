@@ -2,7 +2,7 @@
 
 $pageTitle = 'Login';
 
-echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
     $username = trim($_POST['userEmail']);
@@ -35,7 +35,7 @@ if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
             }
             #login-box {
                 max-width:400px;
-                margin: 0 auto;
+                /*margin: 0 auto;*/
                 border-radius: 5px;
                 padding: 10px;
                 background-color: #111111;
@@ -47,15 +47,15 @@ if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
         <title><?php echo $pageTitle ?></title>
     </head>
     <body>
-            <div id="login-box">
-                <h1><?php echo $pageTitle ?></h1>
+        <h1><?php echo $pageTitle ?></h1>
+        <p><?php echo $pageURL; ?></p>
+        <div id="login-box">
+            <form action="login" method="POST">
+                <input type="text" name="userEmail" />
+                <input type="password" name="userPassword" /><br />
+                <input type="submit" name="loginButton" value="Login" />
+            </form>
 
-                <form action="login" method="POST">
-                    <input type="text" name="userEmail" />
-                    <input type="password" name="userPassword" /><br />
-                    <input type="submit" name="loginButton" value="Login" />
-                </form>
-
-            </div>
+        </div>
     </body>
 </html> 

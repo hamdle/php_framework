@@ -2,7 +2,7 @@
 
 $pageTitle = '404';
 
-echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 ?>
 <!DOCTYPE html>
@@ -22,5 +22,7 @@ echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     </head>
     <body>
         <h1><?php echo $pageTitle ?></h1>
+        <p>Page not found</p>
+        <p><?php echo $pageURL; ?></p>
     </body>
 </html> 
