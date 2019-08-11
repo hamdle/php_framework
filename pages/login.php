@@ -28,10 +28,10 @@ if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
 <html>
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
         <style type="text/css">
-            body {
+            .purple-background {
                 background-color: #772953;
-                color: #FFFFFF;
             }
             #login-box {
                 max-width:400px;
@@ -40,13 +40,10 @@ if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
                 padding: 10px;
                 background-color: #111111;
             }
-            input {
-                margin: 10px;
-            }
         </style>
         <title><?php echo $pageTitle ?></title>
     </head>
-    <body>
+    <body class="purple-background">
         <h1><?php echo $pageTitle ?></h1>
         <p><?php echo $pageURL; ?></p>
         <div id="login-box">
