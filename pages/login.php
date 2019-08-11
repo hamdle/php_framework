@@ -31,7 +31,8 @@ function processLogin($db)
     }
 }
 
-function checkAuthUser() {
+function checkAuthUser()
+{
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/admin');
         die();
@@ -41,6 +42,7 @@ function checkAuthUser() {
 // Process page
 session_start();
 
+// If already logged in, go to admin page
 checkAuthUser();
 processLogin($db);
 

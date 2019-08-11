@@ -1,24 +1,21 @@
 <?php
 
 // Set page vars
-$pageTitle = 'Admin';
+$pageTitle = 'Logout';
 $pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 // Define page functions
-function verifyAuthUser()
+function logout()
 {
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
-        // TODO: redirect_to_login()
-        header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/login');
-        die();
-    }
+    $_SESSION['loggedin'] = false;
+    $_SESSION['username'] = null;
+    session_destroy();
 }
 
 // Process page
 session_start();
 
-// Verify the user has a valid session (is logged in)
-verifyAuthUser();
+logout();
 
 ?>
 <!DOCTYPE html>
@@ -27,16 +24,16 @@ verifyAuthUser();
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="/css/style.css">
         <style type="text/css">
-            .black-background {
-                background-color: #000000;
+            .purple-background {
+                background-color: #772953;
             }
         </style>
         <title><?php echo $pageTitle ?></title>
     </head>
-    <body class="black-background">
+    <body class="purple-background">
         <h1><?php echo $pageTitle ?></h1>
-        <p>Authenticated</p>
         <p><?php echo $pageURL; ?></p>
-        <p><a href="/logout">Logout</a></p>
+        <p>You have been logged out</p>
+        <p><a href="/">Home</a></p>
     </body>
 </html> 
