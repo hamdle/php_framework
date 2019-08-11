@@ -1,27 +1,48 @@
 <?php
 
+// Set page vars
 $pageTitle = 'Login';
-
 $pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
-    $username = trim($_POST['userEmail']);
-    $password = trim($_POST['userPassword']);
+// Define page functions
+function processLogin($db)
+{
+    if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
+        $username = trim($_POST['userEmail']);
+        $password = trim($_POST['userPassword']);
+    
+        $query = "select * from users where username=?";
+        $args = [$username];
+        $data = $db->run($query, $args);
+    
+        var_dump($data);
+        if (isset($data[0])) {
+            if (password_verify($password, $data[0]['password'])) {
+                // Login successful
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $username;
 
-    $query = "select * from users where username=?";
-    $args = [$username];
-    $data = $db->run($query, $args);
-
-    var_dump($data);
-    if (isset($data[0])) {
-        if (password_verify($password, $data[0]['password'])) {
-            header('Location: ' . 'http://' . $_SERVER['HTTP_HOST']);
-            die();
-        } else {
-            echo "Password is invalid";
+                header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/admin');
+                die();
+            } else {
+                echo "Password is invalid";
+            }
         }
     }
 }
+
+function checkAuthUser() {
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/admin');
+        die();
+    }
+}
+
+// Process page
+session_start();
+
+checkAuthUser();
+processLogin($db);
 
 ?>
 <!DOCTYPE html>

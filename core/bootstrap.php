@@ -10,6 +10,7 @@ require 'core/Router.php';
 $routes = [
     '' => 'pages/index.php',
     'login' => 'pages/login.php',
+    'admin' => 'pages/admin.php',
     '404' => 'pages/404.php'
 ];
 
