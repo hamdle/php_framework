@@ -1,15 +1,12 @@
 <?php
 
-// Set page vars
-$pageTitle = 'Admin';
-$pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
 // Define page functions
 function verifyAuthUser()
 {
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         // TODO: redirect_to_login()
-        header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/login');
+        //header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/404');
+        echo 'Permission denied';
         die();
     }
 }

@@ -1,9 +1,5 @@
 <?php
 
-// Set page vars
-$pageTitle = 'Logout';
-$pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
 // Define page functions
 function logout()
 {

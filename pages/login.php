@@ -1,11 +1,7 @@
 <?php
 
-// Set page vars
-$pageTitle = 'Login';
-$pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
 // Define page functions
-function processLogin($db)
+function checkLoginAttempt($db)
 {
     if (isset($_POST['userEmail']) && isset($_POST['userPassword'])) {
         $username = trim($_POST['userEmail']);
@@ -27,6 +23,8 @@ function processLogin($db)
             } else {
                 echo "Password is invalid";
             }
+        } else {
+            echo "Invalid login information";
         }
     }
 }
@@ -44,7 +42,7 @@ session_start();
 
 // If already logged in, go to admin page
 checkAuthUser();
-processLogin($db);
+checkLoginAttempt($db);
 
 ?>
 <!DOCTYPE html>

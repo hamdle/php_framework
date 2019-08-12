@@ -1,8 +1,21 @@
 <?php
 
-$pageTitle = 'Home';
+// Define page functions
+function getCheckAuthUser()
+{
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        return true;
+    }
+    return false;
+}
 
-$pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+// Process page
+session_start();
+
+$pageLinks = '<a href="/login">Login</a>';
+if (getCheckAuthUser()) {
+    $pageLinks = '<a href="/admin">Admin</a>';
+}
 
 ?>
 <!DOCTYPE html>
@@ -20,6 +33,6 @@ $pageURL = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <body class="orange-background">
         <h1><?php echo $pageTitle ?></h1>
         <p><?php echo $pageURL; ?></p>
-        <p><a href="/login">Login</a></p>
+        <p><?php echo $pageLinks; ?></p>
     </body>
 </html> 
